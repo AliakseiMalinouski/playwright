@@ -7,14 +7,16 @@ test.describe('form', () => {
         await page.goto('http://localhost:9000/');
     });
 
-    test('should have form', async ({ page }) => {
-       const form = page.locator('form');
-       const input = form.locator('input');
-       const button = form.locator('button');
-       await input.focus();
-       await input.fill('some value');
-       await input.blur();
-       await button.click();
-       await form.locator('input').isVisible();
+    test('localized field', async ({ page }) => {
+        const localizedField = page.locator('[name="localized-field"]')
+        await localizedField.focus();
+        await localizedField.fill('some locale value');
+        await localizedField.blur();
     });
+
+    test('header', async ({ page }) => {
+        const header = page.locator('div.header');
+        await header.getByRole('button').dblclick();
+    });
+
 });

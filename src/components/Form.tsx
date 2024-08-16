@@ -12,6 +12,7 @@ const Form: FC = () => {
     return (
         <form data-testid='form'>
             <input data-testid='form-input'/>
+            <input name="localized-field"/>
             <button type="button" onClick={handleClick}>click</button>
         </form>
     )
