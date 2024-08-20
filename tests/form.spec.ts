@@ -3,8 +3,9 @@ import { beforeEach } from 'node:test';
 
 test.describe('form', () => {
 
-    test.beforeEach( async ({ page }) => {
+    test.beforeEach( async ({ page }, testInfo) => {
         await page.goto('http://localhost:9000/');
+        testInfo.setTimeout(testInfo.timeout + 1000);
     });
 
     test('localized field', async ({ page }) => {
@@ -26,6 +27,12 @@ test.describe('form', () => {
 
         // await page.waitForResponse
         // await page.waitForRequest
+    });
+
+    test('timeouts', async ({ page }) => {
+        const localizedField = page.locator('[name="localized-field"]');
+        test.slow();
+        localizedField.focus({ timeout: 1000 });
     });
 
 });
